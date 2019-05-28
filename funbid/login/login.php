@@ -24,9 +24,13 @@
 			{
 				$_SESSION['token'] = $output;
 				$_SESSION['username'] = $_POST['username'];
-				echo "You are logged in as ".$_SESSION['username']."!";
-			} else echo "Log in fail!";
-			echo "<br><a href='/'>Return to main page</a>";
+				$_SESSION['status'] = "You are logged in as ".$_SESSION['username']."!";
+			} else {
+				$_SESSION['status'] = "Log in fail";
+			}
+			header('Location: /');
 		}
+		header('Location: /');
 	}
+	header('Location: /');
 ?>	

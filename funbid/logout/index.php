@@ -5,7 +5,8 @@
 	if (isset($_SESSION['token'])) {
 		unset($_SESSION['token']);
 		unset($_SESSION['username']);
-		echo "Log out successfully!";
+		$_SESSION['status'] = 'Logout successfully!';
+		header('Location: /');
 	}
-	echo "<br><a href='/'>Return to main page</a>";
+	header('Location: /');
 ?>

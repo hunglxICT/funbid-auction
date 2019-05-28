@@ -19,9 +19,9 @@
 		<link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-ipad.png" />
 		<link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-iphone4.png" />
 		<link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-ipad3.png" />
+<link rel="stylesheet" href="/css/popup.css">
 						<link href="/css/ddr.611783c6b3eb1f5c48e65386966541de.gy.min.css" rel="stylesheet">
 
-		
 				<script  src="/js/dd.178ab063441e85738102cba29b913646.min.js"></script>		
 		<script>
 		  var user_class='Guest';
@@ -164,7 +164,61 @@
 					?>
 					
 					<div class="guest_only">
-						<a class="btn head_login_btn" href="/login" role="button"><span class="icon-lock"></span> Log in</a>
+						
+<script type="text/javascript" src="/js/loginpopup.js"></script>
+
+
+<button onclick="document.getElementById('modal-login').style.display='block'" style="width:200px; margin-top:10px; margin-left:0px;">
+Log in</button>
+
+<div id="modal-login" class="modal2">
+<form class="modal-content2 animate" action="/login/login.php" method="POST">
+<div class="imgcontainer2">
+<span onclick="document.getElementById('modal-login').style.display='none'" class="close2" title="Close PopUp">&times;</span>
+<h1 style="text-align:center">FunBid Login</h1>
+</div>
+<div class="container2">
+<input type="text" class="text2" placeholder="Enter Username" name="username">
+<input type="password" class="password2" placeholder="Enter Password" name="password">
+<button type="submit" class="button2">Login</button>
+</div>
+</form>
+</div>
+
+<div id="modal-register" class="modal2">
+<form class="modal-content2 animate" action="/register/register.php" method="POST">
+<div class="imgcontainer2">
+<span onclick="document.getElementById('modal-register').style.display='none'" class="close2" title="Close PopUp">&times;</span>
+<h1 style="text-align:center">FunBid Register</h1>
+</div>
+<div class="container2">
+<input type="text" class="text2" placeholder="Enter Username" name="username">
+<input type="password" class="password2" placeholder="Enter Password" name="password">
+<input type="password" class="password2" placeholder="Confirm Password" name="confirm_password">
+<input type="text" class="text2" placeholder="First name" name="first_name">
+<input type="text" class="text2" placeholder="Last name" name="last_name">
+<button type="submit" class="button2">Register</button>
+</div>
+</form>
+</div>
+
+<div id="modal-add-item" class="modal2">
+<form class="modal-content2 animate" action="/add-new-item/add_item.php" method="POST">
+<div class="imgcontainer2">
+<span onclick="document.getElementById('modal-add-item').style.display='none'" class="close2" title="Close PopUp">&times;</span>
+<h1 style="text-align:center">FunBid Register</h1>
+</div>
+<div class="container2">
+<input type="text" class="text2" placeholder="Item Name" name="name">
+<input type="text" class="text2" placeholder="Image Link" name="image">
+<input type="text" class="text2" placeholder="Category" name="category">
+<input type="text" class="text2" placeholder="Init Price" name="initprice">
+<input type="datetime-local" class="text2" placeholder="Start Date" name="startdate">
+<input type="datetime-local" class="text2" placeholder="End Date" name="enddate">
+<button type="submit" class="button2">Add Item</button>
+</div>
+</form>
+</div>
 					</div>
 
 					<div class="join2-redesign-2-help">
@@ -178,12 +232,11 @@
 			<div style="clear:both;"></div>
 
 			
-			
 			<div class="navi desktop-navigation" role="navigation">
 				<a href="/" class="navbutton user_only">Auctions</a><!--
-                --><a href="/login/" class="navbutton">Log in</a><!--
-                --><a href="/register/" class="navbutton">Register</a><!--
-                                --><a href="/add-new-item/" class="navbutton">Add new item</a><!--
+                --><a class="navbutton" onclick="document.getElementById('modal-login').style.display='block'">Log in</a><!--
+                --><a class="navbutton" onclick="document.getElementById('modal-register').style.display='block'">Register</a><!--
+                --><a class="navbutton" onclick="document.getElementById('modal-add-item').style.display='block'">Add new item</a><!--
                                 --><a href="/logout/" class="navbutton">Logout</a><!--
                 --><a href="/dashboard" class="navbutton user_only"><span class="icon-user"></span> My Dashboard</a><!--
                 --><a href="/login" role="button" class="navbutton join_only">Log in</a><!--
@@ -2284,4 +2337,12 @@
             }
 		</script>
 	<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","licenseKey":"3a48b106b4","applicationID":"72838233","transactionName":"MlxQZUoFC0YFUkxbCwsWcURLEApYS1dKXQoRSVNWXUkJWgNWXVZJCkxG","queueTime":0,"applicationTime":101,"atts":"HhtTEwIfGEg=","errorBeacon":"bam.nr-data.net","agent":""}</script></body>
+
 </html>
+<?php
+	if (isset($_SESSION['status']))
+	{
+		echo "<script>alert('".$_SESSION['status']."');</script>";
+		unset($_SESSION['status']);
+	}
+?>

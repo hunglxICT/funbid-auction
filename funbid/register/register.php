@@ -1,4 +1,7 @@
 <?php
+	session_start();
+?>
+<?php
 	include('../api.php');
 	if (isset($_POST)) {
 		if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['confirm_password'])) {
@@ -26,10 +29,11 @@
 			curl_close($ch);
 			//echo $output;
 			//var_dump(json_decode($output, true));
-			if ($output != $FAIL_MESSAGE) echo "Register successfully!";
-			else echo "Register fail";
-			echo "<br><a href='/'>Return to main page</a>";
-			echo "<br><a href='/login/'>Return to login page</a>";
+			if ($output != $FAIL_MESSAGE) $_SESSION['status'] = 'Register successfully!';
+			else $_SESSION['status'] = 'Register fail!';
+			header('Location: /');
 		}
+		header('Location: /');
 	}
+	header('Location: /');
 ?>	

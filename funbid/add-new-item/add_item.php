@@ -4,9 +4,8 @@
 <?php
 	include('../api.php');
 	if (!isset($_SESSION['token'])) {
-		echo "You must log in first!";
-		echo "<br><a href='/'>Return to main page</a>";
-		echo "<br><a href='/login/'>Return to login page</a>";
+		$_SESSION['status'] = "You must log in first!";
+		header('Location: /');
 	}
 	else if (isset($_POST)) {
 		if (isset($_POST['name']) && isset($_POST['startdate']) && isset($_POST['enddate'])) {
@@ -42,9 +41,11 @@
 			// close curl resource to free up system resources 
 			curl_close($ch);
 			//var_dump(json_decode($output, true));
-			if ($output != $FAIL_MESSAGE) echo "Upload new item successfully!";
-			else echo "Upload new item fail";
-			echo "<br><a href='/'>Return to main page</a>";
+			if ($output != $FAIL_MESSAGE) $_SESSION['status'] = "Upload new item successfully!";
+			else $_SESSION['status'] = "Upload new item fail";
+			header('Location: /');
 		}
+		header('Location: /');
 	}
+	header('Location: /');
 ?>
